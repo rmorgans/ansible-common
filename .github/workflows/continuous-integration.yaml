@@ -50,7 +50,9 @@ jobs:
 
   tests-run:
     needs: [test-discover]
-    runs-on: ubuntu-latest
+    # ubuntu-latest is now ubuntu-26.04, where gpg fails to decrypt
+    # secrets.sops.env with the imported key ("Bad secret key")
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
